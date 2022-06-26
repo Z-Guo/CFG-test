@@ -1,0 +1,697 @@
+1.	What is Python and what are its main features?
+Python is a high level, object-oriented and interpreted programming language, i.e. it is related to the concepts of classes and we do not need to know the system architecture.
+One of the features is being extensive, python can be written and compiled into C/C++. Another feature is being dynamically typed, Python does not require to specify the type of variable.
+
+2.	Discuss the difference between Python 2 and Python 3
+
+•	Python 3 supports typing whereas Python 2 is an untyped language.
+•	Syntax difference, Python 3 includes parentheses
+•	Rounding numbers when its dividing, Python 2 rounds down to the nearest number whereas Python 3 is more accurate by dividing the exact number given.
+3.	PEP8
+a document on the guidelines of how to write python code in best practice. The aim of the document is to improve readability and consistency of the code.
+4.	In computing / computer science what is a program?
+Programs are equivalent statements forming instructions for the computer to complete a particular task/ tasks.
+5.	In computing / computer science what is a process?
+It is an instance of executing a program. It is stored in the main memory and an active entity.
+6.	In computing / computer science what is cache?
+Cache is the data stored which enable a higher speed of accessing data in both hardware and software. I.e. when accessing a web browser, cache (html,images, css and etc) is stored locally so it allows faster loading of a page.
+7.	In computing / computer science what is a thread and what do we mean by multithreading?
+Thread is a subset of the process. A thread is a flow of execution, where each thread is responsible of a separate flow of control.
+8.	In computing / computer science what is concurrency and parallelism and what are the differences?
+•	Concurrency runs & manage multiple computations whereas parallelism run multiple computations simultaneously
+•	Concurrency requires only a single processing unit but parallelism requires multiple.
+•	Concurrency uses non-deterministic control flow approach and parallelism is deterministic control flow approach.
+9.	What is GIL in Python and how does it work?
+The global Interpreter Lock makes the python interpreter thread safe and prevent deadlocks. GIL in practice does not allow multi threading therefore deadlocks are avoided.
+10. What do these software development principles mean: DRY, KISS, BDUF
+Don't Repeat Yourself – to avoid code duplication and be pragmatic and code reuse.
+Keep It Simple, Stupid – keep the solution as simple as you can, write efficient, and simple code.
+Big Design Up Front – plan before implementation to prevent errors.
+
+
+ 11. What is a Garbage Collector in Python and how does it work?
+The process of deleting the un-used objects to make it available. It works by tracking objects that can be deallocated.
+12. How is memory managed in Python?
+python memory manager is responsible for allocating and de-allocating the memory. There are two ways, one being reference counting, when reference count of an object becomes zero. The memory allocated for the object is then removed. Another strategy is generational garbage collection, it can triggered manually. It is classified from generation 0 to 2 with a threshold that indicates when to invoke the collection.
+13. What is a Python module?
+Modules are files with statements and definitions. Modules can be used to divide a larger program into smaller files by reuse codes. The most used functions can be defined in a module then import it into files that require them. I.e. import math
+ 14. What is docstring in Python?
+String literals / multi-line string with no assignment. It can be used after a function or class, or specified in a segment of code to describe what the function does.
+15. What is pickling and unpickling in Python? Example usage.
+Pickling – conversion of a python object into a byte stream. Unpickling is the reverse. The command used is to import pickle.
+import pickle
+def pickle_data():
+    data = {
+                'Name': 'Ziling',
+                'Age': '24',
+                'Country': 'UK'
+        }
+    filename = 'PersonalInfo'
+    outfile = open(filename, 'wb')
+    pickle.dump(data,outfile)
+    outfile.close()
+pickle_data()
+
+import pickle
+def unpickling():
+    file = open(filename,'rb')
+    new_data = pickle.load(file)
+    file.close()
+    return new_data
+print(unpickling())
+
+16. What are the tools that help to find bugs or perform static analysis?
+•	Pychecker – used to find bugs and flags the style and the complexity of the bug
+•	Pylint – control warnings and errors.
+17. How are arguments passed in Python by value or by reference? Give an example.
+By reference – passing in the variable into the function directly. The variable is then residing in storage. The change is then reflected in the calling function.
+student = {'x': 12, 'y': 14, 'z': 10}
+def test(student):
+    new = {'a':20, 'b':21}
+    student.update(new)
+    print("Inside the function", student)
+    return
+test(student)
+print("Outside the function:", student)
+
+By value – value directly passed as the value to the argument. Ensures original variable remains unchanged
+
+def justalist(list):
+    return list
+
+list_one = ["sss"]
+justalist(list_one)
+print(list_one)
+
+18. What are Dictionary and List comprehensions in Python? Provide examples.
+List comprehensions, a more elegant way to create lists instead of loops.
+
+x = [i for i in range(50)]
+print(x)
+
+Dictionary comprehensions is a more elegant way of creating a dictionary
+print(dict([(i, i-2) for i in range(5)]))
+
+ 19. What is namespace in Python?
+A collection of names, a way of providing names for each object. It can be built in/global/local/enclosing. i.e. str() is a built in function.
+20.What is pass in Python?
+Pass is placeholder for future code as it returns nothing but its not always allowed, i.e. in loops/
+21. What is unit test in Python?
+Tests that checks a component to ensure it works as expected. It is easy to isolate errors as its testing a very small part of the program.
+22. In Python what is slicing?
+By specifying the index, it returns a slice object which is the range of characters from the string.
+
+b = "dasdsadhadasio!"
+print(b[2:5])
+
+23. What is a negative index in Python?
+Negative indexes denotes the slice from the end of the string.
+24.How can the ternary operators be used in python? Give an example.
+
+def find_maximum(a, b):
+    return a if (a > b) else b
+
+
+print(find_maximum(20,30))
+
+
+ 25. What does this mean: *args, **kwargs? And why would we use it?
+*args – non keyword arguments, *args allows us to pass a variable number of arguments to a function. We would use it when we have a function that takes any number of arguments.
+**kwargs – keyword arguments, to pass a keyworded, variable length argument list.It is a dictionary passed as a parameter.
+26. How are range and xrange different from one another?
+range gets all numbers in the range in one go, xrange produces numbers on call so xrange() is faster than range() in terms of speed, therefore requires less memory consumption.
+ 27. What is Flask and what can we use it for?
+It is a python module, an API of python used as a web framework.
+ 28. What are clustered and non-clustered index in a relational database?
+The clustered index defines the physical order that a table is stored in a database. Therefore, a table only has one clustered index. Essentially, the clustered index organise data in order on the columns is created even if the data was inserted randomly without a sequential order. Non-clustered index separates the data and index, they are stored in different places.
+
+29. What is a ‘deadlock’ a relational database?
+Where two/more transactions waiting for one another to give up the resources that the other task needs. The situation becomes indefinite.
+30.What is a ‘livelock’ a relational database?
+Two/more transactions are in the state of processing but they’re responding to each other continuously.
+String Methods
+Capitalize(), returns a string where only the first character is upper case
+txt = "foodie"
+
+x = txt.capitalize()
+
+print (x)
+
+Casefold(),turns the whole string into lower case for every character
+txt = "Pringles Are the bEst"
+
+x = txt.casefold()
+
+print(x)
+
+Center(), string is centred by specifying characters as the fill character
+txt = "food"
+
+x = txt.center(40)
+
+print(x)
+
+
+
+Count(), counts how many times a specified value has appeared in the string.
+txt = "I love eating salmon, salmon is my best friend"
+
+x = txt.count("salmon")
+
+print(x)
+
+endswith(), returns boolean, if the string ends with the specified value, it is true. Otherwise it is False if it does not end with a specified value.
+txt = "what is your name?"
+
+x = txt.endswith("?")
+
+print(x)
+
+find(), returns the index of where the word at its first occurrence. It returns -1 if the value is not found within the string.
+
+txt = "Korean BBQ is tasty."
+
+x = txt.find("Korean")
+
+print(x)
+
+format(), returns a formatted string by having placeholder (defined by curly brackets), it can be identified as indexes or empty curly brackets.
+txt = "My name is {0}, I'm {1}".format("Ziling",24)
+print(txt)
+
+index(), finds the first appearance of the specified value
+txt = "Korean BBQ is tasty."
+
+x = txt.index("BBQ")
+
+print(x)
+
+isalnum(), returns Boolean, true if all the characters in the string are alphanumeric(just alphabet and numbers). It will return false if the string contains space or !#%&? etc.
+txt = "Mushroom16"
+
+x = txt.isalnum()
+
+print(x)
+
+isalpha(), returns Boolean, true if all the characters in the string are alphabet letters
+
+txt = "Mushroom"
+
+x = txt.isalpha()
+
+print(x)
+
+isdigit(), returns Boolean, true if all the characters in the string are numbers.
+
+txt = "4545"
+
+x = txt.isdigit()
+
+print(x)
+
+islower(), returns boolean, true if all the characters in the string are lower case.
+
+
+txt = "mushroom"
+
+x = txt.islower()
+
+print(x)
+
+isnumeric(), returns true if all the characters are numbers.Excludes decimals and negative values.
+
+txt = "123"
+
+x = txt.isnumeric()
+
+print(x)
+
+
+isspace(), returns true if all the characters in a string are just spaces. If it contains anything else, it will return false
+
+y = "  "
+
+x = y.isspace()
+
+print(x)
+
+istitle(), returns true if all words in a string start with a upper case letter when rest of the characters are in a lower case.
+
+
+txt = "Potato Is Not Tomato!"
+
+x = txt.istitle()
+
+print(x)
+
+
+
+
+
+
+isupper(), returns true if every character in the string is in uppercase.
+
+
+txt = "POTATO IS NOT TOMATO!"
+
+x = txt.isupper()
+
+print(x)
+
+join(), takes all items in the tuple/list and joins them together into one string by specifying the join value.
+
+just_a_tuple = ("x", "y", "z")
+
+k = "?".join(just_a_tuple)
+
+print(k)
+
+
+lower(), returns the entire string in lower case.
+txt = "POTATO IS NOT TOMATO!"
+
+x = txt.lower()
+
+print(x)
+
+lstrip(), removes any leading characters. In this case, removes the spaces from the left of the string.
+
+txt = "       POTATO IS NOT TOMATO!        "
+
+x = txt.lstrip()
+
+print(x)
+
+replace(), replaces a specified word/phrase with another.
+
+txt = "POTATO IS NOT TOMATO!"
+
+x = txt.replace("TOMATO","APPLE")
+
+print(x)
+
+
+rsplit(), splits a whole string into a list.
+
+txt = "a, b, c"
+
+x = txt.rsplit(",")
+
+print(x)
+
+rstrip(), removes the trailing characters, in this case it is spaces on the right of the string.
+
+txt = "     potato     "
+
+x = txt.rstrip()
+
+print("I wish", x, "is a tomato")
+
+split(), splits a string into a list and every word becomes a list
+
+txt = "POTATO IS NOT TOMATO!"
+
+x = txt.split()
+
+print(x)
+
+splitlines(), splits every line into a list item (at line breaks)
+
+txt = "POTATO IS NOT TOMATO\nYou are a potato"
+
+x = txt.splitlines()
+
+print(x)
+
+startswith(), returns true if the string starts with specified value (case sensitive), otherwise false.
+
+txt = "POTATO IS NOT TOMATO,You are a potato"
+
+x = txt.startswith("POTATO")
+
+print(x)
+
+strip(), removes both leading and trailing characters.
+
+txt = "    POTATO IS NOT TOMATO,You are a potato     "
+
+x = txt.strip()
+
+print(x)
+
+swapcase(), this changes the lower case into upper case and upper into lower.
+
+
+txt = "    POTATO IS NOT TOMATO,You are a potato     "
+
+x = txt.swapcase()
+
+print(x)
+
+title(), returns a string in the format of a title, everyword begins with an upper case.
+
+
+txt = "POTATO IS NOT TOMATO,You are a potato"
+
+x = txt.title()
+
+print(x)
+
+upper(), returns a string that every word and character are in upper case.
+txt = "POTATO IS NOT TOMATO,You are a potato"
+
+x = txt.upper()
+
+print(x)
+
+
+
+
+
+List methods:
+
+Append(), adds an element to the end of the list
+ingredients = ['prawns', 'pork', 'salmon']
+ingredients.append("rice")
+print(ingredients)
+
+
+
+Clear(), removes all elements from the list. Giving the ingredients as empty list.
+ingredients = ['prawns', 'pork', 'salmon']
+ingredients.clear()
+print(ingredients)
+
+Copy(), copies an entire list. New_list will have an identical list as ingredients.
+ingredients = ['prawns', 'pork', 'salmon']
+new_list=ingredients.copy()
+print(new_list)
+
+count(), returns the number of times a specified value appeared in the list.
+ingredients = ['prawns', 'pork', 'salmon']
+x= ingredients.count("prawns")
+print(x)
+
+extend(), adds another list of elements to the end of the current list.
+ingredients = ['prawns', 'pork', 'salmon']
+
+fruits = ['mango']
+
+ingredients.extend(fruits)
+print(ingredients)
+
+Index(), returns the position of the specified value at the first appearance.
+
+ingredients = ['prawns', 'pork', 'salmon']
+
+x = ingredients.index('pork')
+print(x)
+
+Insert(), adds an element at a specified index/position.
+ingredients = ['prawns', 'pork', 'salmon']
+
+x = ingredients.insert(0,'rice')
+print(ingredients)
+
+pop(), removes an element at a specified index/position.
+ingredients = ['prawns', 'pork', 'salmon']
+ingredients.pop(2)
+print(ingredients)
+
+remove(), removes the specified element at its first occurrence
+ingredients = ['prawns', 'pork', 'salmon']
+ingredients.remove('prawns')
+print(ingredients)
+reverse(), returns a reversed order list.
+ingredients = ['prawns', 'pork', 'salmon']
+ingredients.reverse()
+print(ingredients)
+
+sort(), returns a list by re-ordering the elements, by default it rearranges the list in an ascending order.
+ingredients = ['prawns', 'pork', 'salmon']
+ingredients.sort()
+print(ingredients)
+
+
+Tuple Methods
+Count(), returns the number of times the specified value has occurred in the tuple
+
+thistuple = (1, 3, 7, 8, 7, 5,6, 6, 8, 7)
+
+x = thistuple.count(6)
+
+print(x)
+
+Index(), returns the index of the specified element in the tuple. 8 is at index 3.
+thistuple = (1, 3, 7, 8, 7, 5,6, 6, 8, 7)
+
+x = thistuple.index(8)
+
+print(x)
+
+Dictionary Methods
+Clear(), removes all elements from the dictionary. Giving an empty dictionary {}
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number": "6"
+}
+
+person.clear()
+
+print(person)
+
+Copy(), returns an identical copy of the chosen dictionary
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number": "6"
+}
+
+x = person.copy()
+
+print(x)
+
+fromkeys(keys, value), returns a dictionary with given keys and values
+person = [
+  "key1",
+  "key2",
+  "key3"]
+
+x = ['YC',24,6]
+
+new_dict= dict.fromkeys(person,x)
+print(new_dict)
+
+get(), returns the value of the specified key
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number": "6"
+}
+
+x = person.get("Age")
+
+print(x)
+
+items(), returns a view of the object as a whole, with its key-value pairs
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number": "6"
+}
+
+x = person.items()
+
+print(x)
+
+keys(), only returns the view of keys of the dictionary as a list.
+
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number": "6"
+}
+
+x = person.keys()
+
+print(x)
+
+
+
+pop(), removes the specified item from the dictionary by specifying the key.
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number": "6"
+}
+
+x = person.pop("Name")
+
+print(person)
+
+popitem(), removes the last item from the dictionary by default
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number": "6"
+}
+
+x = person.popitem()
+
+print(person)
+
+setdefault(), returns  the value of the specified key, and if the key does not exist, it will insert the key with the specified value to the dictionary.
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number":"6"
+}
+
+x = person.setdefault("Fav Number", "7")
+
+print(x)
+
+update(), inserts a new item to the dictionary by specifying the key and value with {}
+
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number":"6"
+}
+
+x = person.update({"Fav Colour":"None"})
+
+print(person)
+
+values(), returns a list of all values in the dictionary
+person = {
+  "Name": "YC",
+  "Age": "24",
+  "Fav Number":"6"
+}
+
+x = person.values()
+
+print(x)
+
+Set Methods
+Add(), add another element to the set without an order / if it already exists, it cannot be added.
+drinks = {"latte", "coke", "squash"}
+
+drinks.add("water")
+
+print(drinks)
+
+clear(), removes all elements
+drinks = {"latte", "coke", "squash"}
+
+drinks.clear()
+
+print(drinks)
+
+copy(), copies an identical set (not in order)
+drinks = {"latte", "coke", "squash"}
+
+x = drinks.copy()
+
+print(x)
+
+difference(), return a set that contains the different elements between two sets. In this case, it will return drinks set without the common element with y.
+
+drinks = {"latte", "coke", "squash"}
+
+y = {"7UP", "tango", "coke"}
+
+z= drinks.difference(y)
+
+print(z)
+
+intersection(), returns a set that contains the same elements between the two sets, which is coke in this case.
+drinks = {"latte", "coke", "squash"}
+
+y = {"7UP", "tango", "coke"}
+
+z= drinks.intersection(y)
+
+print(z)
+
+issubset(), returns Boolean, true if all items in set x is included in set y. Otherwise, false
+x = {1, 2, 3}
+y = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+
+z = x.issubset(y)
+
+print(z)
+
+issuperset(), returns Boolean, true if all items in set y is included in set x, otherwise false.
+
+x = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}
+y = {1, 2, 3}
+
+z = x.issuperset(y)
+
+print(z)
+pop(), removes a random item from the set
+x = {"a","z","y"}
+
+x.pop()
+print(x)
+
+remove(), removes a specified element from the set and will raise error if the element does not exist.
+
+x = {"a","z","y"}
+
+x.remove("a")
+print(x)
+
+
+symmetric_difference(), returns all items from the both sets apart from the common items found in both sets.
+x = {"sweets", "crisps", "coke"}
+y = {"mouse", "rabbit", "coke"}
+
+z = x.symmetric_difference(y)
+
+print(z)
+
+union(), returns all items from both sets and if there are duplicates, the duplicates are removed in the set so it only appears once.
+x = {"sweets", "crisps", "coke"}
+y = {"mouse", "rabbit", "coke"}
+
+z = x.union(y)
+
+print(z)
+
+update(), inserts new items to the current set from the other set. If there are duplicated items, these will only appear once in the updated set.
+
+x = {"sweets", "crisps", "coke"}
+y = {"mouse", "rabbit", "coke"}
+
+x.update(y)
+
+print(x)
+
+File Methods
+Read(), read the content of the specified file. It returns the specified number of byes if you pass in a size parameter.
+f = open("justafile.txt", "r")
+print(f.read(45))
+
+Readline(), read the first line of the specified file.
+f = open("justafile.txt", "r")
+print(f.readline())
+
+readlines(), returns a list of all lines in the file, each line is an item in the list.
+f = open("justafile.txt", "r")
+print(f.readlines())
+
+write(), writes a specified text to the file by opening with a file by appending (where the text is defaulted at the end of the file)
+f = open("justafile.txt", "a")
+f.write("\n Once Upon A Time...")
+f.close()
+
+writelines(),writes the items of a list to the file by opening with a file by appending (“a”) so the texts are defaulted at the end of the file.
+
+f = open("justafile.txt", "a")
+f.writelines(["\nOnce Upon A Time", "\n I don't know."])
+f.close()
+
